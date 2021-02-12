@@ -3,11 +3,17 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-	<!-- Exam exam = new NewlecExam(); -->
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	
-	<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:math="20" p:com="30" p:eng="50"/>
+	<context:component-scan base-package="spring.di.ui, spring.di.entity"/>
+	
+	<!-- Exam exam = new NewlecExam(); -->
+	<!-- <bean id="exam1" class="spring.di.entity.NewlecExam" p:kor="10" p:math="20" p:com="30" p:eng="50"/>
+	<bean id="exam2" class="spring.di.entity.NewlecExam" p:kor="1" p:math="2" p:com="3" p:eng="5"/> -->
 	
 	<!-- <bean id="exam" class="spring.di.entity.NewlecExam">
 	 	<constructor-arg name="kor" value="10"/>
@@ -18,18 +24,18 @@
 	
 	
 	<!-- ExamConsole console = new GridExamConsole(); -->
-	<bean id="console" class="spring.di.ui.InlineExamConsole" >
-		<!-- console.setExam(exam); -->
+	<!-- <bean id="console" class="spring.di.ui.InlineExamConsole" >
+		console.setExam(exam);
 		<property name="exam" ref="exam" />	
-	</bean>
+	</bean> -->
 	
 	
 	<!-- collection으로 list에 객체 넣어주기 -->
 	
-	<util:list id="exams" list-class="java.util.ArrayList">
+	<!-- <util:list id="exams" list-class="java.util.ArrayList">
 		<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="1" p:math="2" p:com="3" p:eng="4"/>
 		<ref bean="exam"/>
-	</util:list>
+	</util:list> -->
 	
 	<!-- <bean id="exams" class="java.util.ArrayList">
 		<constructor-arg>
