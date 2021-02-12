@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	<!-- Exam exam = new NewlecExam(); -->
-	<bean id="exam" class="spring.di.entity.NewlecExam" />
+	
+	<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:math="20" p:com="30" p:eng="50"/>
+	
+	<!-- <bean id="exam" class="spring.di.entity.NewlecExam">
+	 	<constructor-arg name="kor" value="10"/>
+	 	<constructor-arg name="com" value="20"/>
+	 	<constructor-arg name="math" value="30"/>
+	 	<constructor-arg name="eng" value="40"/>
+	</bean> -->
+	
+	
 	<!-- ExamConsole console = new GridExamConsole(); -->
 	<bean id="console" class="spring.di.ui.InlineExamConsole" >
 		<!-- console.setExam(exam); -->
-		<property name="exam" ref="exam" />
+		<property name="exam" ref="exam" />	
 	</bean>
+	
+	
+	<!-- collection으로 list에 객체 넣어주기 -->
+	
+	<util:list id="exams" list-class="java.util.ArrayList">
+		<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="1" p:math="2" p:com="3" p:eng="4"/>
+		<ref bean="exam"/>
+	</util:list>
+	
+	<!-- <bean id="exams" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="1" p:math="2" p:com="3" p:eng="4"/>
+				<ref bean="exam"/>
+			</list>
+		</constructor-arg>
+	</bean> -->
+	
 </beans>
